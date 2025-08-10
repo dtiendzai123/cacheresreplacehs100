@@ -1,3 +1,7 @@
+let body = $response.body;
+
+// Nếu là JSON thì parse thử
+try { body = JSON.parse($response.body); } catch (e) {}
 // == Free Fire File Replacer Script ==
 class FFFileReplacer {
   constructor() {
@@ -194,3 +198,8 @@ console.log("=== 🧠 FREE FIRE FILE REPLACER READY ===");
 console.log("👉 Dùng: quickReplace() để chạy nhanh");
 console.log("👉 Hoặc: customReplace('url', 'targetFile')");
 console.log("📊 Trạng thái: fileReplacer.getStatus()");
+if (typeof body === "object") {
+  $done({ body: JSON.stringify(body) });
+} else {
+  $done({ body });
+}
